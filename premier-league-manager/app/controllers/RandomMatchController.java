@@ -131,14 +131,20 @@ public class RandomMatchController extends Controller {
                         if ((footballClub.getClubName().equals(randomElementOpponentTeam.getClubName()))) {//if the opponent club entered by the user is in the list of football clubs
                             if (isClubUniversity == true) {//making the boolean value to true as it a university football club
                                 if (footballClub instanceof UniversityFootballClub) {
-                                    isClubUniversity=true;
+                                    opponentClub = footballClub;//take the specific club name entered by the user and the relevant features of that club name into the opponentclub 			variable
+                                    opponentClubFound = true;//making the boolean value to true as the opponent club is found
+
+                                }
+                            } else {
+                                if (footballClub instanceof SchoolFootballClub) {//if the foot ball club entered by the user is a school football club
+                                    opponentClub = footballClub;//take the specific club name entered by the user and the relevant features of that club name into the opponentclub 				variable
+
+                                    opponentClubFound = true;//making the boolean value to true as the opponent club is found
+
                                 }
                             }
 
-                            opponentClub=footballClub;
-                            opponentClubFound=true;
                         }
-
                     }
 
                     if (homeClubFound == true && opponentClubFound == true) {//if the home club and the opponent club entered by the user, both are found adding the elements to the arraylist and setting it to the match simulation class

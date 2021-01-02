@@ -250,11 +250,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 //else if the football club entered by the user is a school football club
                 homeClub = footballClub;//take the specific club name entered by the user and the relevant features of that club name into the home club variable
 
-                //printing an error message because one club can play maximum of 38 matches only for the season.
-                if (homeClub.getNoOfMatchesPlayed() == 38) {
-                    System.out.println("ERROR ! MAXIMUM AMOUNT OF MATCHES PLAYED BY A single CLUB SHOULD NOT EXCEED 38 [Home club has exceeded the maximum amount]");
-                    System.out.println("\n");
-                }
                 homeClubFound = true;//as the home club is found making the boolean value to true
 
             }
@@ -274,11 +269,7 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 } else {
                     if (footballClub instanceof SchoolFootballClub) {//if the foot ball club entered by the user is a school football club
                         opponentClub = footballClub;//take the specific club name entered by the user and the relevant features of that club name into the opponentclub 				variable
-                        //printing an error message because one club can play maximum of 38 matches only for the season.
-                        if (opponentClub.getNoOfMatchesPlayed() == 38) {
-                            System.out.println("ERROR ! MAXIMUM AMOUNT OF MATCHES PLAYED BY A single CLUB SHOULD NOT EXCEED 38 [Opponent club has exceeded the maximum 				amount]");
-                            System.out.println("\n");
-                        }
+
                         opponentClubFound = true;//making the boolean value to true as the opponent club is found
 
                     }
