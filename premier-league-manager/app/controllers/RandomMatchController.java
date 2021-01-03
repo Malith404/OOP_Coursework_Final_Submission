@@ -184,7 +184,42 @@ public class RandomMatchController extends Controller {
             }
 
         }
+        try {
+            //creating text file of football clubs
+            FileOutputStream fileOutputStreamPremierLeague1 = new FileOutputStream("footballClubPremierLeague.txt");
+            ObjectOutputStream objectOutputStreamPremierLeague1 = new ObjectOutputStream(fileOutputStreamPremierLeague1);
 
+            //creating text file of matches played
+            FileOutputStream fileOutputStreamPremierLeague2 = new FileOutputStream("matchSimulation.txt");
+            ObjectOutputStream objectOutputStreamPremierLeague2 = new ObjectOutputStream(fileOutputStreamPremierLeague2);
+
+            //writing objects into the text file which are in the football clubs
+            for (FootballClub footballClub : list_of_footballClubs) {
+                objectOutputStreamPremierLeague1.writeObject(footballClub);
+            }
+            //flush the object output stream
+            objectOutputStreamPremierLeague1.flush();
+            //close the fileoutputstream and objectoutputstream
+            fileOutputStreamPremierLeague1.close();
+            objectOutputStreamPremierLeague1.close();
+
+            //writing objects into the text file which the matches are played
+            for (MatchSimulation matchSimulation : randomMatches) {
+                objectOutputStreamPremierLeague2.writeObject(matchSimulation);
+            }
+            //flush the object output stream
+            objectOutputStreamPremierLeague2.flush();
+            //close the fileoutputstream and objectoutputstream
+            fileOutputStreamPremierLeague2.close();
+            objectOutputStreamPremierLeague2.close();
+
+            System.out.println("DATA SAVED SUCCESSFULLY...");
+            System.out.println("\n");
+            //show any errors there are errors
+        } catch (Exception exception) {
+            System.out.println("ERROR in Saving !");
+            System.out.println("\n");
+        }
         return randomMatches;
     }
 }

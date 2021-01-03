@@ -98,7 +98,75 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
 
     //Method that is used to display the statistics for a selected club
     @Override
-    public void displayStatisticSelectedClub(String clubNameDisplay) {
+    public void displayStatisticSelectedClub(String clubNameDisplay) throws IOException {
+
+        //clear the arraylists
+        list_of_footballClubs.clear();
+        playedMatchesSimulation.clear();
+
+        //load from the text file
+        try {
+            //Creating a stream to read the objects in the text file
+            FileInputStream fileInputStream1 = new FileInputStream("footballClubPremierLeague.txt");
+            ObjectInputStream objectInputStream1 = new ObjectInputStream(fileInputStream1);
+
+            while (true) {
+                FootballClub footballClub = (FootballClub) objectInputStream1.readObject();
+
+                list_of_footballClubs.add(footballClub);
+                freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
+
+            }
+
+
+        } catch (ClassNotFoundException classNotFoundException) {//exception for class not found
+            System.out.println("ERROR ! Class not found Exception has occurred");
+            System.out.println("\n");
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("ERROR ! File not found Exception has occurred");
+            System.out.println("\n");
+        } catch (EOFException eofException) {//exception for end of file
+            System.out.println("==============================");
+            System.out.println("FILE HAS BEEN READ COMPLETELY");
+            System.out.println("==============================");
+            System.out.println("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (list_of_footballClubs.size() > 1) {
+            System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
+            System.out.println("\n");
+        }
+//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
+
+        try {
+            //Creating a stream to read the objects in the text file
+            FileInputStream fileInputStream2 = new FileInputStream("matchSimulation.txt");
+            ObjectInputStream objectInputStream2 = new ObjectInputStream(fileInputStream2);
+
+            while (true) {
+                MatchSimulation matchSimulation = (MatchSimulation) objectInputStream2.readObject();
+
+                playedMatchesSimulation.add(matchSimulation);
+            }
+
+        } catch (ClassNotFoundException classNotFoundException) {//exception for class not found
+            System.out.println("ERROR ! Class not found Exception has occurred");
+            System.out.println("\n");
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("ERROR ! File not found Exception has occurred");
+            System.out.println("\n");
+        } catch (EOFException eofException) {//exception for end of file
+            System.out.println("==============================");
+            System.out.println("FILE HAS BEEN READ COMPLETELY");
+            System.out.println("==============================");
+            System.out.println("\n");
+        }
+        if (playedMatchesSimulation.size() > 1) {
+            System.out.println("DATA LOADED SUCCESSFULLY OF MATCHES PLAYED");
+            System.out.println("\n");
+        }
+
 
         if (list_of_footballClubs.isEmpty()) {//printing an error message if the football club is empty
             System.out.println("No Football clubs in the list,yet!");
@@ -143,8 +211,74 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
 
     //Method that is used to display the premier league table in descending order of their points or goal difference
     @Override
-    public void displayPremierLeagueTable() {
+    public void displayPremierLeagueTable() throws IOException {
         Scanner user_input = new Scanner(System.in);
+
+        //clear the arraylists
+        list_of_footballClubs.clear();
+        playedMatchesSimulation.clear();
+
+        //load from the text file
+        try {
+            //Creating a stream to read the objects in the text file
+            FileInputStream fileInputStream1 = new FileInputStream("footballClubPremierLeague.txt");
+            ObjectInputStream objectInputStream1 = new ObjectInputStream(fileInputStream1);
+
+            while (true) {
+                FootballClub footballClub = (FootballClub) objectInputStream1.readObject();
+
+                list_of_footballClubs.add(footballClub);
+                freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
+
+            }
+
+
+        } catch (ClassNotFoundException classNotFoundException) {//exception for class not found
+            System.out.println("ERROR ! Class not found Exception has occurred");
+            System.out.println("\n");
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("ERROR ! File not found Exception has occurred");
+            System.out.println("\n");
+        } catch (EOFException eofException) {//exception for end of file
+            System.out.println("==============================");
+            System.out.println("FILE HAS BEEN READ COMPLETELY");
+            System.out.println("==============================");
+            System.out.println("\n");
+        }
+        if (list_of_footballClubs.size() > 1) {
+            System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
+            System.out.println("\n");
+        }
+//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
+
+        try {
+            //Creating a stream to read the objects in the text file
+            FileInputStream fileInputStream2 = new FileInputStream("matchSimulation.txt");
+            ObjectInputStream objectInputStream2 = new ObjectInputStream(fileInputStream2);
+
+            while (true) {
+                MatchSimulation matchSimulation = (MatchSimulation) objectInputStream2.readObject();
+
+                playedMatchesSimulation.add(matchSimulation);
+            }
+
+        } catch (ClassNotFoundException classNotFoundException) {//exception for class not found
+            System.out.println("ERROR ! Class not found Exception has occurred");
+            System.out.println("\n");
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("ERROR ! File not found Exception has occurred");
+            System.out.println("\n");
+        } catch (EOFException eofException) {//exception for end of file
+            System.out.println("==============================");
+            System.out.println("FILE HAS BEEN READ COMPLETELY");
+            System.out.println("==============================");
+            System.out.println("\n");
+        }
+        if (playedMatchesSimulation.size() > 1) {
+            System.out.println("DATA LOADED SUCCESSFULLY OF MATCHES PLAYED");
+            System.out.println("\n");
+        }
+
 
         System.out.println("1 => Display Premier League Table");
         System.out.println("2 => Filter Matches played to a particular date");
@@ -407,7 +541,7 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
             System.out.println("\n");
         }
-        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
+//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
 
         try {
             //Creating a stream to read the objects in the text file
@@ -436,7 +570,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             System.out.println("DATA LOADED SUCCESSFULLY OF MATCHES PLAYED");
             System.out.println("\n");
         }
-        new FileOutputStream("matchSimulation.txt").close();//flushing the text file after reading
     }
 
 }

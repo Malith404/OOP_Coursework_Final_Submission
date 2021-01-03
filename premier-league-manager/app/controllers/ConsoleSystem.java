@@ -336,7 +336,7 @@ public class ConsoleSystem implements Serializable {
 
     }
 
-    private static void displayStatisticSelectedClub() {
+    private static void displayStatisticSelectedClub() throws IOException {
 
         User_Input.nextLine();
         mainLoopDisplayStats:
@@ -365,7 +365,7 @@ public class ConsoleSystem implements Serializable {
 
     }
 
-    private static void displayPremierLeagueTable() {
+    private static void displayPremierLeagueTable() throws IOException {
 
         premierLeagueManager.displayPremierLeagueTable();//calling the premier league table from the premier league manager
     }
