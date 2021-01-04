@@ -6,7 +6,6 @@ import java.util.*;
 //PremierLeagueManager class which is going to implement the classes which are in the interface LeagueManager
 public class PremierLeagueManager implements LeagueManager, Serializable {
     public static final int maxNoClubs = 20;//variable showing maximum number of clubs that can play in the premier league
-    private int freeSpacesForClubs = 20;//variable showing the free spaces available ing the list of football clubs.
     private List<FootballClub> list_of_footballClubs = new ArrayList<>();//arraylist which contain all the objects in sports club including football clubs
     private List<MatchSimulation> playedMatchesSimulation = new ArrayList<>();//arraylist which contain all the objects in match simulation class
 
@@ -49,23 +48,27 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             }
         }
 
-        if (freeSpacesForClubs == 0) {
-            System.out.println("ERROR ! The Football club is Full");//if the spaces in the football club drops to zero printing an error message
-        } else {
+         if (list_of_footballClubs.size()<maxNoClubs) {//if football club list size is lesser than 20 add football clubs
             list_of_footballClubs.add(footballClub);//if there are no error adding football clubs to the arraylist
-            freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
             System.out.println("YOU HAVE SUCCESSFULLY ADDED A FOOTBALL CLUB...CHEERS !");
             //printing the number of free slots remaining
-            System.out.println(freeSpacesForClubs > 0 ? ("Free Slots Remaining to add football clubs: " + freeSpacesForClubs) : "No More Spaces available to add a football club");
+             System.out.println("Free Slots remaining : "+(maxNoClubs-list_of_footballClubs.size()));
+             System.out.println("\n");
             System.out.println(list_of_footballClubs);
+        }else{
+            System.out.println("ERROR ! The Football club list is Full");//if the spaces in the football club drops to zero printing an error message
+
         }
         System.out.println("\n");
 
-        if (freeSpacesForClubs >= maxNoClubs) {//if the free slots became greater than or equal to the maximum number of clubs printing an error message
+        if (list_of_footballClubs.size()>maxNoClubs) {//if the free slots became greater than or equal to the maximum number of clubs printing an error message
             System.out.println("ERROR ! No spaces available to add any football club");
             System.out.println("\n");
         }
-
+        System.out.println("===========================================================================");
+        System.out.println("PLEASE SAVE THE DATA BY PRESSING (6) TO PROCEED WITHOUT ANY PROBLEM !!!");
+        System.out.println("===========================================================================");
+        System.out.println("\n");
     }
 
     //Method that is used to delete an existing football club from premier league
@@ -81,9 +84,13 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                     list_of_footballClubs.remove(footballClub);//removing the relevant club from the list of football clubs
                     System.out.println("SAD NEWS !!! YOU HAVE SUCCESSFULLY DELETED THE CLUB");
                     System.out.printf("A %s has Left the Football Club List.%n", footballClub instanceof UniversityFootballClub ? "University Football Club" : "School Football Club");
-                    freeSpacesForClubs += footballClub instanceof UniversityFootballClub ? 1 : 1;//updating the free slots in the list of football clubs
                     System.out.println("\n");
-                    System.out.printf("Free Slots Remaining: %d%n", freeSpacesForClubs); //printing the remaining spaces
+                    //printing the number of free slots remaining
+                    System.out.println("Free Slots remaining : "+(maxNoClubs-list_of_footballClubs.size()));
+                    System.out.println("\n");
+                    System.out.println("===========================================================================");
+                    System.out.println("PLEASE SAVE THE DATA BY PRESSING (6) TO PROCEED WITHOUT ANY PROBLEM !!!");
+                    System.out.println("===========================================================================");
                     System.out.println("\n");
                     break;
                 }
@@ -114,7 +121,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 FootballClub footballClub = (FootballClub) objectInputStream1.readObject();
 
                 list_of_footballClubs.add(footballClub);
-                freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
 
             }
 
@@ -137,7 +143,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
             System.out.println("\n");
         }
-//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
 
         try {
             //Creating a stream to read the objects in the text file
@@ -228,7 +233,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 FootballClub footballClub = (FootballClub) objectInputStream1.readObject();
 
                 list_of_footballClubs.add(footballClub);
-                freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
 
             }
 
@@ -249,7 +253,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
             System.out.println("\n");
         }
-//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
 
         try {
             //Creating a stream to read the objects in the text file
@@ -321,7 +324,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             int month = user_input.nextInt();
 
             System.out.println("Please Enter the Year of the match played : 2020");//taking the year of the match played
-//            int year = user_input.nextInt();
             int year = 2020;
             System.out.println("\n");
 
@@ -463,6 +465,10 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 System.out.println("\n");
             }
         }
+        System.out.println("===========================================================================");
+        System.out.println("PLEASE SAVE THE DATA BY PRESSING (6) TO PROCEED WITHOUT ANY PROBLEM !!!");
+        System.out.println("===========================================================================");
+        System.out.println("\n");
     }
 
     //Method that is used to save the the information entered by the user into a text file
@@ -520,7 +526,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
                 FootballClub footballClub = (FootballClub) objectInputStream1.readObject();
 
                 list_of_footballClubs.add(footballClub);
-                freeSpacesForClubs -= footballClub instanceof UniversityFootballClub ? 1 : 1;//if the football club is a university football club reducing the space by one and else also one
 
             }
 
@@ -541,7 +546,6 @@ public class PremierLeagueManager implements LeagueManager, Serializable {
             System.out.println("DATA LOADED SUCCESSFULLY OF FOOTBALL CLUBS");
             System.out.println("\n");
         }
-//        new FileOutputStream("footballClubPremierLeague.txt").close();//flushing the text file after reading
 
         try {
             //Creating a stream to read the objects in the text file
